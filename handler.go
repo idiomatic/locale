@@ -200,6 +200,9 @@ func Handler(locales []string, matcher language.Matcher, next http.Handler) http
 					http.Redirect(w, r, newPath(), http.StatusFound)
 					return
 				}
+			} else {
+				// unset it, as end-user specified an invalid one or blank
+				SetCookieLocale(w, "")
 			}
 		}
 
